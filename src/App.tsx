@@ -9,13 +9,18 @@ function App() {
   const more = () => {
     setShow(show + 10);
   };
+  const deleteTodo = (id: number) => {
+    const newData = data.filter((todo) => todo.id !== id);
+    setShow(10);
+    return newData;
+  };
   return (
     <section className="grid place-items-center w-full">
       <TodoForm />
       <div className="">
         {data.slice(0, show).map((todo, index) => (
           <>
-            <Todo key={index} todo={todo} />
+            <Todo key={index} todo={todo} deleteTodo={deleteTodo} />
           </>
         ))}
       </div>
