@@ -13,34 +13,37 @@ function App() {
     const newData = data.filter((todo) => todo.id !== id);
     setShow(10);
     return newData;
-  };
-  
-  if(isLoading) {
-    return <div>Loading...</div>
-  } 
+  }; 
 
   if(error) {
     return <div>{error.message}</div>
-  }
+ }
 
   return (
     <section className="grid place-items-center w-full">
       <TodoForm />
-      <div className="">
-        {data.slice(0, show).map((todo, index) => (
+      {isLoading ? (
+        <div>Loading...</div>
+      ): (
           <>
-            <Todo key={index} todo={todo} deleteTodo={deleteTodo} />
+            <div className="">
+              {data.slice(0, show).map((todo, index) => (
+                <>
+                  <Todo key={index} todo={todo} deleteTodo={deleteTodo} />
+                </>
+              ))}
+            </div>
+            <button onClick={more} className="grid gap-2 m-2 w-full justify-center">
+              <p className="text-sm">
+                {show}/{data.length}
+              </p>
+              <p>
+                <i className="fa-solid fa-chevron-down"></i>
+              </p>
+            </button>
+
           </>
-        ))}
-      </div>
-      <button onClick={more} className="grid gap-2 m-2 w-full justify-center">
-        <p className="text-sm">
-          {show}/{data.length}
-        </p>
-        <p>
-          <i className="fa-solid fa-chevron-down"></i>
-        </p>
-      </button>
+        )} 
     </section>
   );
 }
