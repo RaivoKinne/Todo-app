@@ -5,7 +5,7 @@ import TodoForm from "./components/TodoForm";
 
 function App() {
   const [show, setShow] = useState(10);
-  const data = useFetchData();
+  const {data,error,isLoading} = useFetchData();
   const more = () => {
     setShow(show + 10);
   };
@@ -14,6 +14,15 @@ function App() {
     setShow(10);
     return newData;
   };
+  
+  if(isLoading) {
+    return <div>Loading...</div>
+  } 
+
+  if(error) {
+    return <div>{error.message}</div>
+  }
+
   return (
     <section className="grid place-items-center w-full">
       <TodoForm />
