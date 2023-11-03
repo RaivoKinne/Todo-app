@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Todo from "./components/Todo";
-import { useFetchData } from "./hooks";
+import { useFetchData } from "./hooks/useFetchData";
 import TodoForm from "./components/TodoForm";
 
 function App() {
@@ -17,7 +17,7 @@ function App() {
 
   if(error) {
     return <div>{error.message}</div>
- }
+  }
 
   return (
     <section className="grid place-items-center w-full">
