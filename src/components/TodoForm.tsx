@@ -20,7 +20,7 @@ function TodoForm() {
     const newTodo: TodoType = {
       userId: 1,
       id: todos.length + 1,
-      title: input,
+      title: input + " " + "(you)",
       completed: false,
     };
 
